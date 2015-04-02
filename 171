@@ -1,0 +1,23 @@
+# leetcode
+class Solution {
+public:
+    int hammingWeight(uint32_t n) {
+        long long ps[40];
+        long long s=1;
+        ps[1]=1;
+        for(int i=2;i<=32;i++){
+            s*=2;
+            ps[i]=s;
+        }
+        int ans=0;
+        if(n<0){n=-n;ans++;}
+        for(int i=32;i>0;i--){
+            if(n>=ps[i]){
+                n-=ps[i];
+                ans++;
+            }
+            if(n<=0)break;
+        }
+        return ans;
+    }
+};
