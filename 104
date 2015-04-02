@@ -1,0 +1,33 @@
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    list<int> ps;
+    list<int>::iterator it;
+    int maxDepth(TreeNode *root) {
+        if(root == NULL) return 0;
+        getmax_deep(root,1);
+        int maxn=1;
+        for(it=ps.begin();it!=ps.end();it++){
+            if(maxn<*it)
+                maxn=*it;
+        }
+        return maxn;
+    }
+    void getmax_deep(TreeNode *root,int height){
+       if(root == NULL){
+          ps.push_front(height-1);
+          return ;
+       }
+       getmax_deep(root->left,height+1);
+       getmax_deep(root->right,height+1); 
+    }
+};
+//C++;
