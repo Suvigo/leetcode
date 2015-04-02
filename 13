@@ -1,0 +1,30 @@
+# leetcode
+class Solution {
+public:
+    int mp[100];
+    void init(){
+        mp['I'] = 1;
+        mp['V'] = 5;
+        mp['X'] = 10;
+        mp['L'] = 50;
+        mp['C'] = 100;
+        mp['D'] = 500;
+        mp['M'] = 1000;
+        return ;
+    }
+    int romanToInt(string s) {
+        init();
+        int t,re,pre;
+        pre=re=mp[s[0]];
+        for(t=1;s[t]!='\0';t++){
+            if(mp[s[t]]<=pre){
+                re+=mp[s[t]];
+            }
+            else{
+               re=re-2*pre+mp[s[t]]; 
+            }
+            pre=mp[s[t]];
+        }
+        return re;
+    }
+};
