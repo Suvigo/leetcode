@@ -1,0 +1,33 @@
+# leetcode
+class Solution {
+public:
+    ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
+        ListNode *lc = new ListNode(0);
+        ListNode *pc;
+        pc = lc;
+        while(l1 != NULL || l2 != NULL){
+            listNode *cur = NULL;
+            if(l1 == NULL){
+                cur = l2;
+                l2 = l2->next;
+            }
+            else if(l2 == NULL){
+                cur = l1;
+                l1 = l1->next;
+            }
+            else{
+                if(l1->val < l2->val){
+                    cur = l1;
+                    l1 = l1->next;
+                }
+                else{
+                    cur = l2;
+                    l2 = l2->next;
+                }
+            }
+            pc ->next = cur;
+            pc = pc ->next;
+        }
+        return lc->next;
+    }
+};
